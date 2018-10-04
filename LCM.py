@@ -1,4 +1,5 @@
-print("Greetings to internet citizens!")
+#print("Greetings to internet citizens!")
+
 
 class Node (object):
 
@@ -92,8 +93,11 @@ class Tree (object):
         return self._node_exists(self.root, val)
     def _node_exists(self, node, val):
         return not self._get(node, val) is None
+    print("heya")
 
- if __name__ == "__main__ " :
+print("hey")
+if __name__ == "__main__ ":
+    print("hey")
     from sys import stdout
     vals = [30, 8, 52, 3, 20, 10, 29, 62]
     tree = Tree()
@@ -111,4 +115,4 @@ class Tree (object):
     ]
     for (a, b) in pairs:
         stdout.write("Common for %d & %d: " % (a, b))
-        print tree.find_common(a, b)
+        print (tree.find_common(a, b))
