@@ -95,14 +95,13 @@ class Tree (object):
         return self._node_exists(self.root, val)
     def _node_exists(self, node, val):
         return not self._get(node, val) is None
-    print("heya")
 
-print("hey1")
+
 
 
 if __name__ == '__main__':
 
-    print("hey")
+
     vals = [30, 8, 52, 3, 20, 10, 29, 62]
     tree = Tree()
     [tree.put(val) for val in vals]
@@ -120,4 +119,12 @@ if __name__ == '__main__':
     for (a, b) in pairs:
         stdout.write("Common for %d & %d: " % (a, b))
         print (tree.find_common(a, b))
-        print tree.find_common(a, b)
+    unittest.main()
+    
+
+
+class Unit_Test_LCM(unittest.TestCase):
+
+    def test_tree_constructor(self):
+        t = Tree()
+        self.assertEqual(t.root, None)
