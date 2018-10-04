@@ -104,11 +104,14 @@ class Test(unittest.TestCase):
         vals = [12,4,6,9,1,20,19,2,23,5]
         for val in vals:
             t.put(val)
-        self.assertRaises("",t.find_common("f","g")
+        self.assertRaises(TypeError,t.find_common("f","g"))
 
-
-
-
+    def test_put_and_LCM_when_vals_double (self):
+        t=Tree()
+        vals=[2,2,1,1,3,3]
+        for val in vals:
+            t.put(val)
+        self.assertEquals(t.find_common(1,3),2)
 
 
 if __name__ == '__main__':

@@ -27,7 +27,11 @@ class Tree (object):
         self.root = None # how does tree know that root is node
 
     def put (self,val):
-        self.root=self._put(self.root,val)
+        if(self.node_exists(val)):
+            print("Node has already been added")
+        else:
+            self.root=self._put(self.root,val)
+            print("added")
 
     def _put(self,node,val ):
         if node is None:
@@ -97,8 +101,12 @@ class Tree (object):
 if __name__ == '__main__':
 
 
-    vals = [30, 8, 52, 3, 20, 10, 29, 62]
+    #vals = [30, 8, 52, 3, 20, 10, 29, 62]
+    vals = [2,2,1,1,3,3]
+    vals1= []
     tree = Tree()
+
+
     [tree.put(val) for val in vals]
     pairs = [
         (30, 8),
@@ -114,7 +122,7 @@ if __name__ == '__main__':
     #for (a, b) in pairs:
         #stdout.write("Common for %d & %d: " % (a, b))
         #print (tree.find_common(a, b))
-    print (tree.find_common(3, 62))
+    print (tree.find_common(1, 3))
     #unittest.main()
 
 
