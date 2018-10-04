@@ -1,11 +1,12 @@
 #print("Greetings to internet citizens!")
 import unittest
+from sys import stdout
 
 
 class Node (object):
 
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, val):
+        self.val = val
         self.left=None
         self.right = None
 
@@ -98,9 +99,10 @@ class Tree (object):
 
 print("hey1")
 
-if __name__ == "__main__ ":
+
+if __name__ == '__main__':
+
     print("hey")
-    from sys import stdout
     vals = [30, 8, 52, 3, 20, 10, 29, 62]
     tree = Tree()
     [tree.put(val) for val in vals]
@@ -118,12 +120,4 @@ if __name__ == "__main__ ":
     for (a, b) in pairs:
         stdout.write("Common for %d & %d: " % (a, b))
         print (tree.find_common(a, b))
-
-
-class myTest(unittest.TestCase):
-    def test_Constructor(self):
-        pass
-
-
-if _name_== '_main_':
-    unittest.main()
+        print tree.find_common(a, b)
