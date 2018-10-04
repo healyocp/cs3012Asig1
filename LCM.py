@@ -24,7 +24,7 @@ class Node (object):
 class Tree (object):
 
     def __init__(self):
-        self.root=None;
+        self.root = None # how does tree know that root is node
 
     def put (self,val):
         self.root=self._put(self.root,val)
@@ -57,14 +57,17 @@ class Tree (object):
         return self._find_common(self.root,a,b)
 
     def _find_common(self, node, a, b):
+        if node is None:
+            return None
 
-        if a > node and b > node:
+        if a > node and b > node: # this must look at
+
             if node.right is None: return None
 
-            if node.right ==a or node.right ==b:
+            if node.right == a or node.right == b:
                 return node.val
 
-            return self._find_common
+            return self._find_common(node.right,a,b)
 
         # Traverse left until a diverge occurs
         elif a < node and b < node:
@@ -119,12 +122,12 @@ if __name__ == '__main__':
     for (a, b) in pairs:
         stdout.write("Common for %d & %d: " % (a, b))
         print (tree.find_common(a, b))
-    unittest.main()
-    
+    #unittest.main()
 
 
-class Unit_Test_LCM(unittest.TestCase):
 
-    def test_tree_constructor(self):
-        t = Tree()
-        self.assertEqual(t.root, None)
+#class Unit_Test_LCM(unittest.TestCase):
+
+    #def test_tree_constructor(self):
+    # = Tree()
+    #    self.assertEqual(t.root, None)
