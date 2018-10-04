@@ -77,6 +77,32 @@ class Test(unittest.TestCase):
         self.assertEqual(t.get(5),5)
         self.assertEqual(t.get(17),None)
 
+    def test_existing_function(self):
+        t=Tree()
+        vals = [12,4,6,9,1,20,19,2,23,5]
+        for val in vals:
+            t.put(val)
+        self.assertEqual(t.node_exists(12), True)
+        self.assertEqual(t.node_exists(4), True)
+        self.assertEqual(t.node_exists(6), True)
+        self.assertEqual(t.node_exists(9), True)
+        self.assertEqual(t.node_exists(1), True)
+        self.assertEqual(t.node_exists(20), True)
+        self.assertEqual(t.node_exists(19), True)
+        self.assertEqual(t.node_exists(2), True)
+        self.assertEqual(t.node_exists(23), True)
+        self.assertEqual(t.node_exists(5), True)
+        self.assertEqual(t.node_exists(3), False)
+        self.assertEqual(t.node_exists(7), False)
+        self.assertEqual(t.node_exists(21),False)
+        self.assertEqual(t.node_exists(0), False)
+        self.assertEqual(t.node_exists(22), False)
+        self.assertEqual(t.node_exists(150), False)
+        
+
+
+
+
 
 
 
