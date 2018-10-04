@@ -1,5 +1,11 @@
 import unittest
+import coverage
+
 from LCM import Tree
+
+coverage = coverage.Coverage()
+coverage.start()
+
 
 class Test(unittest.TestCase):
     def test_tree_constructor(self):
@@ -116,3 +122,7 @@ class Test(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+coverage.stop()
+coverage.save()
+coverage.html_report()
