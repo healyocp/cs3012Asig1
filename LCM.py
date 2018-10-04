@@ -43,7 +43,10 @@ class Tree (object):
         return node
 
     def get(self,val):
-        return self._get(self.root,val)
+        if self.node_exists(val):
+            return self._get(self.root,val)
+        else:
+            return None
 
     def _get(self, node,val):
         while not node is None:
