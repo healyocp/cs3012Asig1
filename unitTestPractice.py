@@ -4,12 +4,12 @@ from multiply import multiply
 class TestUM(unittest.TestCase):
 
 
-
     def setUp(self):
-        pass
+            pass
 
     def test_numbers_3_4(self):
-        self.assertEqual( multiply(3,4), 12)
+        t = multiply()
+        self.assertEqual( t.multiplyfun(3,4), 12)
 
 
 if __name__ == '__main__':
