@@ -53,47 +53,30 @@ class Tree (object):
 
         return None
 
+    #base case
     def find_common(self,a,b):
         return self._find_common(self.root,a,b)
 
+    #if either a or b match the root val-> this is the lowest common ancestor
     def _find_common(self, node, a, b):
+
         if node is None:
             return None
 
-        if a > node and b > node: # this must look at
 
-            if node.right is None: return None
+        if node.val == a or node.val == b :
+            return node.val
 
-            if node.right == a or node.right == b:
-                return node.val
+        left_lca= self._find_common(node.left,a,b)
+        right_lca = self._find_common(node.right,a,b)
 
-            return self._find_common(node.right,a,b)
+        if left_lca and right_lca: # like if they both have values
+            return node.val
 
-        # Traverse left until a diverge occurs
-        elif a < node and b < node:
-            if node.left is None: return None
-             # if left node is `a` or `b` then we found common
-            if node.left == a or node.left == b:
-                return node.val
-            return self._find_common(node.left, a, b)
-         # root does not have any common ancestor
-        # This test is later because we dont want the
-        # recursion to hit it every time
-        elif a == self.root or b == self.root:
-            return None
-        else:
-            # A diverge of the tree traversal occurs here
-            # So the current node is a potential common ancestor
-            # Verify that a and b are legitimate nodes
-            if self._node_exists(node, a):
-                # `a` exists ensure `b` exists
-                if self._node_exists(node, b):
-                    # Common ancestor is validated
-                    return node.val
-                else:
-                    return None
-            else:
-                return None
+        return left_lca if left_lca is not None else right_lca
+
+
+
     def node_exists(self, val):
         return self._node_exists(self.root, val)
     def _node_exists(self, node, val):
@@ -109,15 +92,15 @@ if __name__ == '__main__':
     tree = Tree()
     [tree.put(val) for val in vals]
     pairs = [
-        (3, 20),
+        (30, 8),
         (3, 29),
         (10, 29),
-        (20, 52),
+        (20, 29),
         (3, 62),
         (4, 29),
         (3, 1),
         (8, 3),
-        (8, 20)
+        (52, 62)
     ]
     for (a, b) in pairs:
         stdout.write("Common for %d & %d: " % (a, b))
