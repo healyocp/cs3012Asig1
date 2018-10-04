@@ -47,5 +47,12 @@ class Test(unittest.TestCase):
             t.put(val)
         self.assertEquals(t.find_common(6,6),6)
 
+    def test_LCM_one_input_no_exist(self):
+        t = Tree()
+        vals = [12,4,6,9,1,20,19,2,23,5]
+        for val in vals:
+            t.put(val)
+        self.assertEqual(t.find_common(1,11),None)
+
 if __name__ == '__main__':
     unittest.main()

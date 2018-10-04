@@ -55,20 +55,26 @@ class Tree (object):
 
     #base case
     def find_common(self,a,b):
-        return self._find_common(self.root,a,b)
+        if self.node_exists(a) and self.node_exists(b):
+            return self._find_common(self.root,a,b)
+        else:
+             return None
 
     #if either a or b match the root val-> this is the lowest common ancestor
     def _find_common(self, node, a, b):
 
         if node is None:
+            #print("return")
             return None
 
 
         if node.val == a or node.val == b :
             return node.val
-
+        #print(node.val)
         left_lca= self._find_common(node.left,a,b)
-        right_lca = self._find_common(node.right,a,b)
+        #print("left " + str(left_lca))
+        right_lca = self._find_common(node.right,a,b) #pretty sure the initial node here is the node at the level of the return from the previous
+        #print("right " + str(right_lca))
 
         if left_lca and right_lca: # like if they both have values
             return node.val
@@ -102,9 +108,10 @@ if __name__ == '__main__':
         (8, 3),
         (52, 62)
     ]
-    for (a, b) in pairs:
-        stdout.write("Common for %d & %d: " % (a, b))
-        print (tree.find_common(a, b))
+    #for (a, b) in pairs:
+        #stdout.write("Common for %d & %d: " % (a, b))
+        #print (tree.find_common(a, b))
+    print (tree.find_common(3, 62))
     #unittest.main()
 
 
