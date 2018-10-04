@@ -98,8 +98,13 @@ class Test(unittest.TestCase):
         self.assertEqual(t.node_exists(0), False)
         self.assertEqual(t.node_exists(22), False)
         self.assertEqual(t.node_exists(150), False)
-        
 
+    def test_non_numberic_values_mismatch(self):
+        t=Tree()
+        vals = [12,4,6,9,1,20,19,2,23,5]
+        for val in vals:
+            t.put(val)
+        self.assertRaises("",t.find_common("f","g")
 
 
 
