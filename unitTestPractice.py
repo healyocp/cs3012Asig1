@@ -1,6 +1,6 @@
 import unittest
 
-from multiply import multiply
+from b import multiply
 class TestUM(unittest.TestCase):
 
 
