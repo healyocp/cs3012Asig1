@@ -6,11 +6,11 @@ def findLCA(graphh,vertex1,vertex2):
         #reverseG = graph()
         commonAnc=[]
         reverseG= graphh.invert_dict_nonunique()
-        print(reverseG)
+        #print(reverseG)
         vertex1Path=reverseG.bfs_connected_component(vertex1)
-        print(vertex1Path)
+        #print(vertex1Path)
         vertex2Path=reverseG.bfs_connected_component(vertex2)
-        print(vertex2Path)
+        #print(vertex2Path)
         found=False
         for i in range(len(vertex1Path)):
             for j in range(len(vertex2Path)):
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     graphh = graph(g)
 
     print(findLCA(graphh, 4, 5))
-    #print(findLCA(graphh, 1, 2))
+    print(findLCA(graphh, 1, 2))
     #print(LCA(graphh, 1, 3))
     #print(LCA(graphh, 2, 3))
 
