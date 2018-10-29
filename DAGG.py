@@ -51,7 +51,6 @@ class graph(object):
                 first=1
             for x in v:
                 newGraph.__graphdict.setdefault(x,[]).append(k)
-        print(newGraph)
         return newGraph
 
 
@@ -145,12 +144,14 @@ g = {   1: [2, 3,4],
 
 
 dag = graph(g)
+print(dag.__graphdict)
+for i in g:
+    print i,g[i]
 
-#print(g)
+nd=dag.invert_dict_nonunique()
+for i in nd.__graphdict:
+    print i, nd.__graphdict[i]
 
-#print(nd.edges())
-
-#pathA= nd.bfs_connected_component(5)
 """
 e=nd.edges()
 
