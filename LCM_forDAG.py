@@ -25,34 +25,7 @@ def findLCA(graphh,vertex1,vertex2):
             return -1
 
 
-#def locatekeysNotInItems:
 
-
-
-"""
-def LCA( graphh, a, b):
-    dfs_a = graphh.dfs_recursive(a, [])
-    #print(dfs_a)
-
-    #print(graphh.edges())
-    #print(graphh.vertices())
-    #print(dfs_a) basically print out both dictionaries and see what paths they return. and then decide. , i think i need to go through the longer path first
-
-    dfs_b = graphh.dfs_recursive(b, [])
-    print(len(dfs_a))
-    print(len(dfs_b))
-    for i in range(len(dfs_a)):
-        #print(len(dfs_a), "b")
-        print(repr(i) + " hey")
-        #print(range(len(dfs_a)), "a")
-            #print (i)
-        if dfs_a[i] == dfs_b[i]:
-            print(repr(dfs_a[i])+ "bye")
-            return dfs_a[i]
-    else:
-        return -1;
-
-"""
 
 if __name__ == "__main__":
     g = {   1: [2, 3,4],
@@ -67,9 +40,4 @@ if __name__ == "__main__":
 
     print(findLCA(graphh, 4, 5))
     print(findLCA(graphh, 1, 2))
-    #print(LCA(graphh, 1, 3))
-    #print(LCA(graphh, 2, 3))
-
-
-
     #print(LCA(graphh, 6, 7)) fix this: maybe  anested loop is needed

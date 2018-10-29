@@ -1,3 +1,4 @@
+
 class graph(object):
 
     def __init__ (self,graphdict=None):
@@ -34,81 +35,125 @@ class graph(object):
 
         edges = []
         for vertex in self.__graphdict:
+            print(vertex)
             for neighbour in self.__graphdict[vertex]:
                 if {neighbour, vertex} not in edges:
                     edges.append({vertex, neighbour})
         return edges
 
 
-    def __str__(self):
-        res = "vertices: "
-        for k in self.__graphdict:
-            res += str(k) + " "
-        res += "\nedges: "
-        for edge in self.__generate_edges():
-            res += str(edge) + " "
-        return res
-
-
-
-    def dfs_recursive(self, vertex, path):
-        path += [vertex]
-
-        for neighbor in self.__graphdict[vertex]:
-            #print(self.__graphdict[vertex])
-            #print( neighbor)
-            if neighbor not in path:
-                path = self.dfs_recursive(neighbor, path)
-        print(path)
-        return path
-
     def invert_dict_nonunique(self):
-        newdict=dict()
+        newGraph=graph()
+        first=0
         for k, v in self.__graphdict.items():
+            if first==0:
+                newGraph.__graphdict.setdefault(k,[])
+                first=1
             for x in v:
-                newdict.setdefault(x,[]).append(k)
-        return newdict
+                newGraph.__graphdict.setdefault(x,[]).append(k)
+        print(newGraph)
+        return newGraph
 
 
-g = { "a" : ["d"],
-          "b" : ["c"],
-          "c" : ["d", "e"],
-          "d" : [ ],
-          "e" : ["f"],
-          "f" : []
-      }
+    def bfs_connected_component(self, vertex):
 
-# check print and add funcitons work
+        #self.invert_dict_nonunique()
+        #print(self.invert_dict_nonunique())
+    # keep track of all visited nodes
+        explored = []
+    # keep track of nodes to be checked
+        queue = [vertex]
+
+    # keep looping until there are nodes still to be checked
+        while queue:
+        # pop shallowest node (first node) from queue
+
+            node = queue.pop(0)
+            #print(node)
+            if node not in explored:
+            # add node to list of checked nodes
+                explored.append(node)
+                neighbours = self.__graphdict[node]
+                #print(self.__graphdict[node])
+            # add neighbours of node to queue
+                for neighbour in neighbours:
+                    queue.append(neighbour)
+        return explored
+
+    def findLCA(self,vertex1,vertex2):
+                reverseG = graph()
+                if self.testCycle()== True:
+                    return -1
+                else:
+
+                    commonAnc=[]
+                    reverseG= self.invert_dict_nonunique()
+                #print(reverseG)
+                    vertex1Path=reverseG.bfs_connected_component(vertex1)
+                #print(vertex1Path)
+                    vertex2Path=reverseG.bfs_connected_component(vertex2)
+                #print(vertex2Path)
+                    found=False
+                    for i in range(len(vertex1Path)):
+                        for j in range(len(vertex2Path)):
+                            if(vertex1Path[i]==vertex2Path[j]):
+                                commonAnc.append(vertex1Path[i])
+                                found=True
+
+
+                    if(found):
+                        return max(commonAnc)
+                    else:
+                        return -1
+
+    def testCycle(self):
+        """Return True if the directed graph g has a cycle.
+        g must be represented as a dictionary mapping vertices to
+        iterables of neighbouring vertices. For example:
+
+        >>> cyclic({1: (2,), 2: (3,), 3: (1,)})
+        True
+        >>> cyclic({1: (2,), 2: (3,), 3: (4,)})
+        False
+
+        """
+        path = set()
+        visited = set()
+
+        def visit(vertex):
+            if vertex in visited:
+                return False
+            visited.add(vertex)
+            path.add(vertex)
+            for neighbour in g.get(vertex, ()):
+                if neighbour in path or visit(neighbour):
+                    return True
+            path.remove(vertex)
+            return False
+
+        return any(visit(v) for v in g)
+
+
+
+g = {   1: [2, 3,4],
+            2: [4, 5],
+            3: [4,5],
+            4: [6,7],
+            5: [6],
+            6: [7],
+            7: []}
+
 
 dag = graph(g)
-print(g)
-nd= dag.invert_dict_nonunique()
-print(nd)
-#a = dag.__str__()
 
+#print(g)
 
+#print(nd.edges())
 
-#print(a)
-
+#pathA= nd.bfs_connected_component(5)
 """
-print("Vertices of graph:")
-print(dag.vertices())
-print("Edges of graph:")
-print(dag.edges())
-print("Add vertex:")
-dag.add_vertex("z")
-print("Vertices of graph:")
-print(dag.vertices())
-print("Add an edge:")
-dag.addEdge({"a","z"})
-print("Vertices of graph:")
-print(dag.vertices())
-print("Edges of graph:")
-print(dag.edges())
-print('Adding an edge {"x","y"} with new vertices:')
-dag.addEdge({"x","y"})
-print("Vertices of graph:")
-print(dag.vertices())
-print("Edges of graph:")
-print(dag.edges())
+e=nd.edges()
+
+print(e)
+
 """
